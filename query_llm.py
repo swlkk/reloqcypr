@@ -31,7 +31,7 @@ def get_system_tokens(model):
 
 
 def query_llm(prompt):
-    model_path = "C:/rasa/llmrs/actions/model-q2_K.gguf"  # Путь к вашей модели
+    model_path = "C:/rasa/llmrs/actions/model-q2_K.gguf"  # Путь к директории actions модель будет - model-q2_K.gguf
     n_ctx = 2000
     top_k = 30
     top_p = 0.9
