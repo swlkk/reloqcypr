@@ -1,0 +1,126 @@
+version: "3.1"
+
+stories:
+  - story: greet the user initially
+    steps:
+      - intent: start
+      - action: utter_greet
+      - action: utter_general_options_with_buttons
+
+  - story: greet the user again
+    steps:
+      - intent: greet
+      - action: utter_greet_short
+      - action: utter_general_options_with_buttons
+
+  - story: user thanks
+    steps:
+      - intent: thanks_general
+      - action: utter_thanks
+      - action: utter_thanks_response_general
+      - action: action_listen
+
+  - story: user thanks from documents
+    steps:
+      - slot_was_set:
+          - theme: "Документы"
+      - intent: thanks_documents
+      - action: utter_thanks_response_documents
+      - action: action_listen
+
+  - story: select documents
+    steps:
+      - intent: select_documents
+      - action: utter_select_documents
+
+  - story: visas information
+    steps:
+      - intent: select_visas
+      - action: utter_visas_info
+
+  - story: criminal record information
+    steps:
+      - intent: select_criminal_record
+      - action: utter_criminal_record_info
+
+  - story: translation information
+    steps:
+      - intent: select_translation
+      - action: utter_translation_info
+
+  - story: other question in documents
+    steps:
+      - intent: select_other_question
+      - action: utter_other_question
+      - action: action_listen
+
+  - story: select business
+    steps:
+      - intent: select_business
+      - action: action_topic_selected
+      - slot_was_set:
+          - theme: "Открыть свой бизнес"
+      - action: utter_select_business
+
+  - story: business info
+    steps:
+      - intent: select_business_type
+      - action: action_business_types
+
+  - story: register company
+    steps:
+      - intent: select_register_company
+      - action: action_business_register_company
+
+  - story: business obligations
+    steps:
+      - intent: select_business_obligations
+      - action: action_business_obligations
+
+  - story: other question in business
+    steps:
+      - intent: select_other_question_business
+      - action: utter_other_question_business
+      - action: action_listen
+
+  - story: select taxes
+    steps:
+      - intent: select_taxes
+      - action: action_topic_selected
+      - slot_was_set:
+          - theme: "Налогообложение"
+      - action: utter_select_taxes
+
+  - story: tax resident info
+    steps:
+      - intent: select_tax_resident
+      - action: action_taxes_become_resident
+
+  - story: tax calculator info
+    steps:
+      - intent: select_tax_calculator
+      - action: action_taxes_calculator
+
+  - story: individual taxation info
+    steps:
+      - intent: select_individual_taxation
+      - action: action_taxes_individual
+
+  - story: other question in taxes
+    steps:
+      - intent: select_other_question_taxes
+      - action: utter_other_question_taxes
+      - action: action_listen
+
+  - story: Catch all other questions
+    steps:
+      - action: action_default_fallback
+      - action: action_query_llm
+      - slot_was_set:
+          - fallback: true
+      - action: utter_fallback
+
+  - story: User queries LLM
+    steps:
+      - intent: query_llm
+      - action: action_query_llm
