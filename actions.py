@@ -6,7 +6,7 @@ from llmbot import query_llm
 import json
 import os
 
-# Загрузка данных RAG
+# Загрузка данных RAG из JSON
 data_path = 'C:/rasa/llmrs/data/cyprus-bot-data.json'
 if os.path.exists(data_path):
     with open(data_path, 'r', encoding='utf-8') as f:
@@ -36,10 +36,11 @@ class ActionHousingRent(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        # Получение данных
+        # Получение данных из RAG
         rag_data = data.get("housing_rent", {}).get("real_estate_services", "")
         prompt = f"Информация о риелторах и аренде жилья на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
         
+        # Запрос к LLM
         llm_response = query_llm(prompt)
         
         dispatcher.utter_message(text=llm_response)
@@ -53,7 +54,7 @@ class ActionRentalTips(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        # Получение данных из RAG системы
+        # Получение данных из RAG
         rag_data = data.get("housing_rent", {}).get("rental_tips", "")
         prompt = f"Советы по аренде жилья на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
         
@@ -71,7 +72,7 @@ class ActionBankInfo(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        # Получение данных
+        # Получение данных из RAG
         rag_data = data.get("banks", {}).get("bank_info", "")
         prompt = f"Информация о банках на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
         
@@ -89,10 +90,11 @@ class ActionWaterSupply(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        # Получение данных
+        # Получение данных из RAG
         rag_data = data.get("water_supply", {}).get("general_info", "")
         prompt = f"Информация о водоснабжении на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
-
+        
+        # Запрос к LLM
         llm_response = query_llm(prompt)
         
         dispatcher.utter_message(text=llm_response)
@@ -106,10 +108,11 @@ class ActionUtilitiesRegistration(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        # Получение данных
+        # Получение данных из RAG
         rag_data = data.get("utilities_registration", {}).get("water_registration", "")
         prompt = f"Информация о регистрации коммунальных услуг на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
         
+        # Запрос к LLM
         llm_response = query_llm(prompt)
         
         dispatcher.utter_message(text=llm_response)
@@ -123,7 +126,7 @@ class ActionPaymentSystems(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        # Получение данных из RAG системы
+        # Получение данных из RAG
         rag_data = data.get("payment_systems", {}).get("jcc_info", "")
         prompt = f"Информация о платежных системах на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
         
@@ -141,10 +144,11 @@ class ActionWasteManagement(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        # Получение данных из раг
+        # Получение данных
         rag_data = data.get("waste_management", {}).get("waste_sorting", "")
         prompt = f"Информация о сортировке мусора на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
         
+        # Запрос к LLM
         llm_response = query_llm(prompt)
         
         dispatcher.utter_message(text=llm_response)
@@ -162,89 +166,11 @@ class ActionEmergencyNumber(Action):
         rag_data = data.get("emergency_number", {}).get("emergency_contact", "")
         prompt = f"Информация об экстренных номерах на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
         
+        # Запрос к LLM
         llm_response = query_llm(prompt)
         
         dispatcher.utter_message(text=llm_response)
         return []
-
-class ActionTopicSelected(Action):
-    def name(self) -> Text:
-        return "action_topic_selected"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        theme = tracker.get_slot('theme')
-        dispatcher.utter_message(text=f"Вы выбрали тему: **{theme}**")
-        return []
-
-class ActionTaxesBecomeResident(Action):
-    def name(self) -> Text:
-        return "action_taxes_become_resident"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        dispatcher.utter_message(text="Вы выбрали тему: **Налогообложение**")
-        return []
-
-class ActionTaxesCalculator(Action):
-    def name(self) -> Text:
-        return "action_taxes_calculator"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        dispatcher.utter_message(text="Вы выбрали тему: **Налогообложение**")
-        return []
-
-class ActionTaxesIndividual(Action):
-    def name(self) -> Text:
-        return "action_taxes_individual"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        dispatcher.utter_message(text="Вы выбрали тему: **Налогообложение**")
-        return []
-
-class ActionBusinessRegisterCompany(Action):
-    def name(self) -> Text:
-        return "action_business_register_company"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        dispatcher.utter_message(text="Вы выбрали тему: **Открыть свой бизнес**")
-        return []
-
-class ActionBusinessTypes(Action):
-    def name(self) -> Text:
-        return "action_business_types"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        dispatcher.utter_message(text="Вы выбрали тему: **Открыть свой бизнес**")
-        return []
-
-class ActionBusinessObligations(Action):
-    def name(self) -> Text:
-        return "action_business_obligations"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        dispatcher.utter_message(text="Вы выбрали тему: **Открыть свой бизнес**")
-        return []
-
 class ActionHandleLLMResponse(Action):
     def name(self) -> Text:
         return "action_handle_llm_response"
