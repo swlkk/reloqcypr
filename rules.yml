@@ -66,17 +66,17 @@ rules:
   - rule: Business info
     steps:
       - intent: select_business_type
-      - action: action_business_types
+      - action: utter_business_types
 
   - rule: Register company
     steps:
       - intent: select_register_company
-      - action: action_business_register_company
+      - action: utter_business_register_company
 
   - rule: Business obligations
     steps:
       - intent: select_business_obligations
-      - action: action_business_obligations
+      - action: utter_business_obligations
 
   - rule: Other question in business
     steps:
@@ -95,17 +95,17 @@ rules:
   - rule: Tax resident info
     steps:
       - intent: select_tax_resident
-      - action: action_taxes_become_resident
+      - action: utter_taxes_become_resident
 
   - rule: Tax calculator info
     steps:
       - intent: select_tax_calculator
-      - action: action_taxes_calculator
+      - action: utter_taxes_calculator
 
   - rule: Individual taxation info
     steps:
       - intent: select_individual_taxation
-      - action: action_taxes_individual
+      - action: utter_taxes_individual
 
   - rule: Other question in taxes
     steps:
