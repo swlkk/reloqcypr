@@ -65,17 +65,17 @@ stories:
   - story: business info
     steps:
       - intent: select_business_type
-      - action: action_business_types
+      - action: utter_business_types
 
   - story: register company
     steps:
       - intent: select_register_company
-      - action: action_business_register_company
+      - action: utter_business_register_company
 
   - story: business obligations
     steps:
       - intent: select_business_obligations
-      - action: action_business_obligations
+      - action: utter_business_obligations
 
   - story: other question in business
     steps:
@@ -94,17 +94,17 @@ stories:
   - story: tax resident info
     steps:
       - intent: select_tax_resident
-      - action: action_taxes_become_resident
+      - action: utter_taxes_become_resident
 
   - story: tax calculator info
     steps:
       - intent: select_tax_calculator
-      - action: action_taxes_calculator
+      - action: utter_taxes_calculator
 
   - story: individual taxation info
     steps:
       - intent: select_individual_taxation
-      - action: action_taxes_individual
+      - action: utter_taxes_individual
 
   - story: other question in taxes
     steps:
