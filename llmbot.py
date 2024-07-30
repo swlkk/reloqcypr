@@ -27,7 +27,7 @@ def get_system_tokens(model):
     return get_message_tokens(model, **system_message)
 
 def query_llm(prompt: str) -> str:
-    model_path = "C:/rasa/llmrs/actions/model-q2_K.gguf"  # Путь к вашей модели
+    model_path = "C:/rasa/llmrs/actions/model-q2_K.gguf"  # Путь к модели
     n_ctx = 2000
     top_k = 30
     top_p = 0.9
