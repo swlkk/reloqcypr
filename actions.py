@@ -40,7 +40,6 @@ class ActionHousingRent(Action):
         rag_data = data.get("housing_rent", {}).get("real_estate_services", "")
         prompt = f"Информация о риелторах и аренде жилья на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
         
-        # Запрос к LLM
         llm_response = query_llm(prompt)
         
         dispatcher.utter_message(text=llm_response)
@@ -58,7 +57,6 @@ class ActionRentalTips(Action):
         rag_data = data.get("housing_rent", {}).get("rental_tips", "")
         prompt = f"Советы по аренде жилья на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
         
-        # Запрос к LLM
         llm_response = query_llm(prompt)
         
         dispatcher.utter_message(text=llm_response)
@@ -94,7 +92,6 @@ class ActionWaterSupply(Action):
         rag_data = data.get("water_supply", {}).get("general_info", "")
         prompt = f"Информация о водоснабжении на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
         
-        # Запрос к LLM
         llm_response = query_llm(prompt)
         
         dispatcher.utter_message(text=llm_response)
@@ -112,7 +109,6 @@ class ActionUtilitiesRegistration(Action):
         rag_data = data.get("utilities_registration", {}).get("water_registration", "")
         prompt = f"Информация о регистрации коммунальных услуг на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
         
-        # Запрос к LLM
         llm_response = query_llm(prompt)
         
         dispatcher.utter_message(text=llm_response)
@@ -130,7 +126,6 @@ class ActionPaymentSystems(Action):
         rag_data = data.get("payment_systems", {}).get("jcc_info", "")
         prompt = f"Информация о платежных системах на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
         
-        # Запрос к LLM
         llm_response = query_llm(prompt)
         
         dispatcher.utter_message(text=llm_response)
@@ -148,7 +143,6 @@ class ActionWasteManagement(Action):
         rag_data = data.get("waste_management", {}).get("waste_sorting", "")
         prompt = f"Информация о сортировке мусора на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
         
-        # Запрос к LLM
         llm_response = query_llm(prompt)
         
         dispatcher.utter_message(text=llm_response)
@@ -166,7 +160,6 @@ class ActionEmergencyNumber(Action):
         rag_data = data.get("emergency_number", {}).get("emergency_contact", "")
         prompt = f"Информация об экстренных номерах на Кипре: {rag_data}\n\nВопрос пользователя: {tracker.latest_message.get('text')}\n\nОтвет:"
         
-        # Запрос к LLM
         llm_response = query_llm(prompt)
         
         dispatcher.utter_message(text=llm_response)
