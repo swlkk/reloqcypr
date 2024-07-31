@@ -1,0 +1,13 @@
+setuptools==57.5.0
+rasa
+rasa-sdk
+transformers
+torch
+telebot
+markdown
+python-docx
+requests
+llama-cpp-python
+tqdm
+datasets
+fire
